@@ -18,7 +18,7 @@ const pack = function(config) {
   //本地测试pack函数是否可用
 const currentPath = path.resolve('./', '../dist');
 pack({
-  entryPath: '../test/index.js',
+  entryPath: '../testCode/index.js',
   outPath: currentPath,
   compress: false
 })
