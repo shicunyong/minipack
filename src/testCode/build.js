@@ -19,7 +19,7 @@ const ast = babylon.parse(content, {
   sourceType: 'module'
 })
 
-// console.log(ast, '------------AST-------------')
+console.log(ast, '------------AST-------------')
 
 // deps中包含入口文件所依赖的文件 ['./add]
 const deps = [];
