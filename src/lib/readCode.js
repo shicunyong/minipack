@@ -1,4 +1,7 @@
+const fs = require('fs')
+const babylon = require('babylon')
 const traverse = require('babel-traverse').default
+const { transformFromAst } = require('babel-core')
 
 function readCode(filePath) {
   // 文件路径必传
@@ -21,8 +24,7 @@ function readCode(filePath) {
     filePath,
     deps,
     code,
-    // id: deps.length > 0 ? deps.length - 1 : 0
   }
 }
 
-export default readCode;
+module.exports = readCode;

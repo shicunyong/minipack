@@ -18,10 +18,10 @@ const bundle = function(deps, entry, outPath, compress) {
             }
             require('${entry}')
         })({${modules}},${JSON.stringify(deps)});
-        function require_moduleId (typelist, id) {
+        function require_moduleId (typeList, id) {
             var module_id
-            typelist.forEach(function (item) {
-                if(id === item.filePath || id === item.reletivePaht){
+            typeList.forEach(function (item) {
+                if(id === item.filePath || id === item.relativePath){
                     module_id = item.id
                 }
             })
@@ -32,9 +32,11 @@ const bundle = function(deps, entry, outPath, compress) {
   if (compress) {
     result = uglify.minify(result, { mangle: { toplevel: true } }).code
   }
+  const outFile = outPath + '/bundle.js';
+
   // 将压缩后的代码写到出口文件中
-  fs.writeFileSync(outPath + '/bundle.js', result)
-  console.log('打包完成【success】（./bundle.js）')
+  fs.writeFileSync(outFile, result)
+  console.log('pack_done_success ==>./bundle.js')
 }
 
 module.exports = bundle

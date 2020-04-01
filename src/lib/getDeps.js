@@ -19,6 +19,7 @@ const getDeps = (entry) => {
       console.log('文件的真实路径：', truePath)
       if (/\.css/.test(truePath)) {
         const content = fs.readFileSync(truePath, 'utf-8')
+          // CSS 文件逻辑就是将代码插入到 `style` 标签中
         const styleCode = `
                 var style = document.createElement('style')
                 style.innerText = ${JSON.stringify(content).replace(/\\r\\n/g, '')}
@@ -29,12 +30,10 @@ const getDeps = (entry) => {
           relativePath,
           deps,
           styleCode,
-          // id: deps.length > 0 ? deps.length : 0
         })
       } else {
         let obj = readCode(truePath)
         obj.relativePath = relativePath
-          // obj.id = deps.length > 0 ? deps.length : 0
         deps.push(obj)
       }
     })
